@@ -14,6 +14,7 @@ DetectHiddenWindows, On
 IniRead, Black, HPTracker.ini, Colour, Black
 IniRead, EmulatorTopX, HPTracker.ini, Coordinates, LeftX
 IniRead, EmulatorTopY, HPTracker.ini, Coordinates, LeftY
+IniRead, BlackSensitivity, HPTracker.ini, Colour, BlackSensitivity
 
 Tooltip, ++++++++++++++`n++Finding HP Bar++`n++++++++++++++, EmulatorTopX, EmulatorTopY
 RunWait, AutoIt3.exe FindHP.au3
@@ -41,7 +42,7 @@ loop{
 		PixelGetColor, PGCXY, HP_Right_X, HP_Right_Y, RGB
 		if (PGCXY = Black)
 			countblack++
-	} until countblack > 1
+	} until countblack > BlackSensitivity
 } until HP_Percent <= 0.5
 
 Tooltip, Congrats on the Win`n Ctrl+Space to reload`, Ctrl+Shift+Space to exit, Final_HP_Right_X-((Final_HP_Right_X-Final_HP_Left_X)/1.5),Final_HP_Right_Y+10
